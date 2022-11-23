@@ -9,7 +9,7 @@ You can view the client app [here](https://www.youtube.com/watch?v=j942wKiXFu8) 
 
 | URL     | METHOD | DESCRIPTION    |
 | :---        |    :----:   |          ---: |
-| api/blogs     | GET    | fetches all blogs |
+| api/blogs/     | GET    | fetches all blogs |
 | api/blogs/{id}   | GET  | fecthes a single blog |
-| api/blogs     | POST | post a blog |
+| api/blogs/     | POST | post a blog |
 | api/blogs/{id}   | DELETE | delete a single blog |
