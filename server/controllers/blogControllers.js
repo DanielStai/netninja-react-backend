@@ -1,23 +1,29 @@
 let blogs = [
     {
-      title: "My Blog",
-      body: "Lorem ipsum",
+      title: "My First Blog",
+      body: "Insert some text here",
       author: "mario",
       id: "1"
     },
     {
-      title: "Stai",
-      body: "Fgf",
-      author: "mario",
+      title: "My Second Blog",
+      body: "Insert some more text here",
+      author: "yoshi",
       id: "2"
     }
   ]
 
-
+// @desc Get all blogs
+// @route /api/blogs/
+// @access public
 const getBlogs = (req, res) => {
     res.json(blogs)
 }
 
+
+// @desc Get single blog
+// @route /api/blogs/{id}
+// @access public
 const getBlog = (req, res) => {
     const id = req.params.id 
 
@@ -27,8 +33,13 @@ const getBlog = (req, res) => {
             return
         }
     }
+    res.status(404).send('Blog not found')
 }
 
+
+// @desc Post a blog
+// @route /api/blogs/{id}
+// @access public
 const postBlog = (req, res) => {
     const blog = req.body
     blogs.push(blog)
@@ -37,6 +48,9 @@ const postBlog = (req, res) => {
 
 }
 
+// @desc Delete a blog
+// @route /api/blogs/{id}
+// @access public
 const deleteBlog = (req, res) => {
     const id = req.params.id
 
