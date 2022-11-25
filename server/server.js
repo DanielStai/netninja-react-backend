@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const {errorHandler} = require('./middleware/errorHandler')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 
 app.use('/api/blogs', require('./routes/blogRoutes'))
+app.use(errorHandler)
 
 
 app.listen(port, () => {

@@ -1,3 +1,6 @@
+const asyncHandler = require('express-async-handler')
+
+
 let blogs = [
     {
       title: "My First Blog",
@@ -13,18 +16,22 @@ let blogs = [
     }
   ]
 
+
+
 // @desc Get all blogs
 // @route /api/blogs/
 // @access public
-const getBlogs = (req, res) => {
+const getBlogs = asyncHandler(async(req, res) => {
     res.json(blogs)
-}
+})
+
+
 
 
 // @desc Get single blog
 // @route /api/blogs/{id}
 // @access public
-const getBlog = (req, res) => {
+const getBlog = asyncHandler(async(req, res) => {
     const id = req.params.id 
 
     for (let blog of blogs){
@@ -34,24 +41,34 @@ const getBlog = (req, res) => {
         }
     }
     res.status(404).send('Blog not found')
-}
+})
+
+
 
 
 // @desc Post a blog
 // @route /api/blogs/{id}
 // @access public
-const postBlog = (req, res) => {
+const postBlog = asyncHandler(async(req, res) => {
     const blog = req.body
-    blogs.push(blog)
 
-    res.send('New post has been added')
+    if (!req.body.text){
+        res.status(400)
+        throw new Error ('Please fill all the required fields')
 
-}
+    } else{
+
+        blogs.push(blog)
+        res.send('New post has been added')
+    }
+})
+
+
 
 // @desc Delete a blog
 // @route /api/blogs/{id}
 // @access public
-const deleteBlog = (req, res) => {
+const deleteBlog = asyncHandler(async(req, res) => {
     const id = req.params.id
 
     blogs = blogs.filter(i => {
@@ -62,7 +79,8 @@ const deleteBlog = (req, res) => {
     })
 
     res.send('Blog has been deleted')
-}
+})
+
 
 module.exports = {
     getBlogs,
