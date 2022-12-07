@@ -11,25 +11,21 @@ const getBlogs = asyncHandler(async(req, res) => {
 })
 
 
-
-
 // @desc Get single blog
 // @route /api/blogs/{id}
 // @access public
 const getBlog = asyncHandler(async(req, res) => {
-    const id = req.params.id 
-    const blogs = await Blog.find()
 
-    for (let blog of blogs){
-        if (blog.id===id){
-            res.json(blog)
-            return
-        }
+    const blog = await Blog.findById(req.params.id)
+
+    if(!blog){
+        res.status(400)
+        throw new Error('Blog not found')
     }
-    res.status(404).send('Blog not found')
+
+    res.json(blog)
+
 })
-
-
 
 
 // @desc Post a blog
@@ -51,7 +47,6 @@ const postBlog = asyncHandler(async(req, res) => {
         res.status(200).json(blog)
     }
 })
-
 
 
 // @desc Delete a blog
