@@ -7,7 +7,7 @@ const User = require('../models/userModel')
 // @route /api/blogs/
 // @access public
 const getBlogs = asyncHandler(async(req, res) => {
-    const blogs = await Blog.find({user:req.user.id})
+    const blogs = await Blog.find()
     res.json(blogs)
 })
 
