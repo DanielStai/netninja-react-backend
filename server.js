@@ -15,7 +15,11 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-
+app.get('/', (res, req) => {
+  res.json({
+    message:"Hello World"
+  })
+})
 app.use('/api/blogs', require('./routes/blogRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
 
