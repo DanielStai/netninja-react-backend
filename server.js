@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv').config()
 const colors = require('colors')
-const {errorHandler} = require('./middleware/errorHandler')
+const {errorHandler} = require('./middleware/errorMiddleware')
 const { connectDB } = require('./config/db')
 
 connectDB()
