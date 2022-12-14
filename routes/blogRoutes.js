@@ -4,7 +4,7 @@ const { getBlogs, postBlog, getBlog, deleteBlog} = require('../controllers/blogC
 const { protect } = require('../middleware/authMiddleware')
 
 
-router.route('/').get(protect, getBlogs).post(protect, postBlog)
+router.route('/').get(getBlogs).post(protect, postBlog)
 router.route('/:id').get(protect, getBlog).delete(protect, deleteBlog)
 
 
